@@ -1,4 +1,4 @@
-package nl.han.oose.controller;
+package nl.han.oose.exceptionmapper;
 
 import nl.han.oose.dto.ErrorDTO;
 import nl.han.oose.persistence.SpotitubePersistenceException;

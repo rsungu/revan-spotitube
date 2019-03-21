@@ -1,4 +1,4 @@
-package nl.han.oose.controller;
+package nl.han.oose.resources;
 
 import nl.han.oose.dto.*;
 

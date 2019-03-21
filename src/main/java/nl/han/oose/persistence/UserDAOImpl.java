@@ -2,13 +2,16 @@ package nl.han.oose.persistence;
 
 import nl.han.oose.dto.UserDTO;
 
+import javax.enterprise.inject.Default;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserDAO {
+@Default
+public class UserDAOImpl implements UserDAO {
 
+    @Override
     public UserDTO getUser(String username, String password) {
         UserDTO foundUser = null;
 

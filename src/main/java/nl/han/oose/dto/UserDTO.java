@@ -2,23 +2,32 @@ package nl.han.oose.dto;
 
 public class UserDTO {
 
-    private String username;
+    private String name;
+    private String user;
     private String password;
 
     public UserDTO() {
     }
 
     public UserDTO(String user, String password) {
-        this.username = user;
+        this.user = user;
         this.password = password;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getPassword() {

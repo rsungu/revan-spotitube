@@ -1,4 +1,4 @@
-package nl.han.oose.controller;
+package nl.han.oose.resources;
 
 import nl.han.oose.dto.*;
 import nl.han.oose.persistence.TokenDAO;
@@ -7,7 +7,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("playlists")
+@Path("/playlists")
 public class PlaylistResource {
 
     private TokenDAO tokenDAO = new TokenDAO();

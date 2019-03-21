@@ -1,4 +1,9 @@
 package nl.han.oose.persistence;
 
-public class SpotitubePersistenceException {
+import java.sql.SQLException;
+
+public class SpotitubePersistenceException extends RuntimeException {
+    public SpotitubePersistenceException(Throwable e) {
+        super(e);
+    }
 }

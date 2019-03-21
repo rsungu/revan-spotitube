@@ -1,4 +1,4 @@
-package nl.han.oose;
+package nl.han.oose.dto;
 
 public class ErrorDTO {
     private String code;
@@ -9,7 +9,7 @@ public class ErrorDTO {
         this.message = message;
     }
 
-    public ErrorDTO() {
+    public ErrorDTO(String message) {
     }
 
     public String getCode() {

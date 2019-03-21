@@ -1,20 +1,23 @@
-package nl.han.oose;
+package nl.han.oose.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlaylistsDTO {
-    private List<PlaylistsDTO> playlists;
+    private List<PlaylistDTO> playlists;
     private int length;
 
     public PlaylistsDTO() {
-
+        playlists = new ArrayList<PlaylistDTO>();
+        playlists.add(new PlaylistDTO("1", "HipHop", "Revan"));
+        playlists.add(new PlaylistDTO("2", "Hardcore", "Revan"));
     }
 
-    public List<PlaylistsDTO> getPlaylists() {
+    public List<PlaylistDTO> getPlaylists() {
         return playlists;
     }
 
-    public void setPlaylists(List<PlaylistsDTO> playlists) {
+    public void setPlaylists(List<PlaylistDTO> playlists) {
         this.playlists = playlists;
     }
 

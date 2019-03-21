@@ -1,6 +1,6 @@
 package nl.han.oose;
 
-import nl.han.oose.controller.LoginResource;
+import nl.han.oose.resources.LoginResource;
 import nl.han.oose.dto.ErrorDTO;
 import nl.han.oose.dto.TokenDTO;
 import nl.han.oose.dto.UserDTO;

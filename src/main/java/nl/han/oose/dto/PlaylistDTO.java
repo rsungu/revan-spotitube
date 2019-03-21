@@ -1,4 +1,4 @@
-package nl.han.oose;
+package nl.han.oose.dto;
 
 import java.util.ArrayList;
 import java.util.List;

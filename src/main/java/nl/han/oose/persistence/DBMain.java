@@ -1,9 +1,9 @@
-package nl.han.oose;
+package nl.han.oose.persistence;
 
 import javax.xml.transform.Result;
 import java.sql.*;
 
-public class Main  {
+public class DBMain {
 
     public static void main(String[] args) {
 
