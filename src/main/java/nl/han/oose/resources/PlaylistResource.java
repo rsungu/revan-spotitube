@@ -1,6 +1,7 @@
 package nl.han.oose.resources;
 
 import nl.han.oose.dto.*;
+import nl.han.oose.persistence.PlaylistsDAO;
 import nl.han.oose.persistence.TokenDAO;
 
 import javax.ws.rs.*;
@@ -11,6 +12,7 @@ import javax.ws.rs.core.Response;
 public class PlaylistResource {
 
     private TokenDAO tokenDAO = new TokenDAO();
+    private PlaylistsDAO playlistsDAO = new PlaylistsDAO();
 
     public PlaylistResource() {
 
@@ -20,7 +22,7 @@ public class PlaylistResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllPlaylists(@QueryParam("token") String token) {
         if (tokenDAO.checkToken(token)) {
-            return Response.ok(new PlaylistsDTO()).build();
+            return Response.ok(playlistsDAO.getAllPlaylists("revan")).build();
         } else {
             return Response.status(Response.Status.UNAUTHORIZED)
                     .entity(new ErrorDTO("401", "Wrong token"))
@@ -32,7 +34,22 @@ public class PlaylistResource {
     @Path(":{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response deletePlaylist(@PathParam("id") String id, @QueryParam("token") String token) {
-        return Response.ok(id).build();
+        if (tokenDAO.checkToken(token)) {
+            playlistsDAO.deletePlaylist(id);
+            return Response.ok(playlistsDAO.getAllPlaylists("revan")).build();
+        } else {
+            return Response.status(Response.Status.UNAUTHORIZED)
+                    .entity(new ErrorDTO("401", "Wrong token"))
+                    .build();
+        }
     }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response addPlaylist(PlaylistDTO playlistDTO, @QueryParam("token") String token) {
+        return Response.ok(playlistsDAO.getAllPlaylists("revan")).build();
+    }
+
 
 }
