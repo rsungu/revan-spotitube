@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlaylistDTO {
-    private String id;
+    private int id;
     private String name;
     private Boolean owner;
     private List<TrackDTO> tracks;
 
-    public PlaylistDTO(String id, String name, Boolean owner) {
+    public PlaylistDTO(int id, String name, Boolean owner) {
         this.id = id;
         this.name = name;
         this.owner = owner;
@@ -19,11 +19,11 @@ public class PlaylistDTO {
     public PlaylistDTO() {
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
