@@ -33,26 +33,4 @@ public class LoginResource {
         return Response.ok(token).build();
     }
 
-
-//    @POST
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public Response login(UserDTO user) {
-//        UserDTO authenticatedUser = userDAO.getUser(user.getUser(), user.getPassword());
-//
-//        if (authenticatedUser != null) {
-//            String token = UUID.randomUUID().toString();
-//
-//            TokenDTO tokenDTO = new TokenDTO(token, authenticatedUser.getName());
-//            tokenDAO.saveToken(authenticatedUser.getName(), token);
-//
-//            return Response.ok(tokenDTO).build();
-//        } else {
-//            return Response.status(Response.Status.UNAUTHORIZED)
-//                    .entity(new ErrorDTO("401", "Login failed for user: " + user.getUser()))
-//                    .build();
-//        }
-//    }
-
-
 }

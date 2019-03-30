@@ -3,43 +3,12 @@ package nl.han.oose.persistence;
 import nl.han.oose.dto.TrackDTO;
 import nl.han.oose.dto.TracksDTO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+public interface TrackDAO {
+    void addTrackToPlaylist(int playlistId, TrackDTO trackDTO);
 
-public class TrackDAO {
+    void deleteTrackFromPlaylist(int playlistId, int trackId);
 
-    public TracksDTO getTracks(String playlistId) {
-        TracksDTO tracksDTO = new TracksDTO();
-        List<TrackDTO> tracks = new ArrayList<>();
-        try (
-                Connection connection = new ConnectionFactory().getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(
-                        "SELECT * FROM track")
-        ) {
-            preparedStatement.setString(1, playlistId);
-            ResultSet resultSet = preparedStatement.executeQuery();
+    TracksDTO getTracksNotInPlaylist(int playlistId);
 
-//            while (resultSet.next()) {
-//                tracks.add(new TrackDTO(resultSet.getInt("trackId"),
-//                        resultSet.getString("title"),
-//                        resultSet.getString("performer"),
-//                        resultSet.getInt("duration"),
-//                        resultSet.getString("album"),
-//                        resultSet.getInt("playcount"),
-//                        resultSet.getString("publicationDate"),
-//                        resultSet.getString("description"),
-//                        resultSet.getBoolean("offlineAvailable")
-//                ));
-//            }
-            tracksDTO.setTracks(tracks);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return tracksDTO;
-    }
-
+    TracksDTO getTracksForPlaylist(int playlistId);
 }

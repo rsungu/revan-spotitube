@@ -1,6 +1,5 @@
-package nl.han.oose;
+package nl.han.oose.resources;
 
-import nl.han.oose.resources.LoginResource;
 import nl.han.oose.dto.ErrorDTO;
 import nl.han.oose.dto.TokenDTO;
 import nl.han.oose.dto.UserDTO;
@@ -13,9 +12,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import javax.ws.rs.core.Response;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(MockitoExtension.class)
 class LoginResourceTest {
@@ -28,11 +27,6 @@ class LoginResourceTest {
 
     @InjectMocks
     private LoginResource sut;
-
-//    @BeforeEach
-//    void setUp() {
-//        sut = new LoginResource();
-//    }
 
     @Test
     void loginSucces() {
