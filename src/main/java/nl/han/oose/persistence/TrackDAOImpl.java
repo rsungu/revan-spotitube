@@ -17,11 +17,12 @@ public class TrackDAOImpl implements TrackDAO {
         try (
                 Connection connection = new ConnectionFactory().getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(
-                        "INSERT INTO playlist_track (playlistId, trackId)" +
-                                "VALUES (?,?)")
+                        "INSERT INTO playlist_track (playlistId, trackId, offline)" +
+                                "VALUES (?,?,?)")
         ) {
             preparedStatement.setInt(1, playlistId);
             preparedStatement.setInt(2, trackDTO.getId());
+            preparedStatement.setBoolean(3, trackDTO.isOfflineAvailable());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -54,8 +55,8 @@ public class TrackDAOImpl implements TrackDAO {
                                     "SELECT * FROM track T1 INNER JOIN playlist_track PT " +
                                         "ON T1.id=PT.trackId " +
                                     "WHERE playlistId=?) AS TP " +
-                                "ON T.id=TP.trackId " +
-                                "WHERE TP.trackId IS NULL"
+                                "ON T.id=TP.id " +
+                                "WHERE TP.id IS NULL"
                 )
         ) {
             preparedStatement.setInt(1, playlistId);
@@ -97,7 +98,7 @@ public class TrackDAOImpl implements TrackDAO {
                     resultSet.getInt("playcount"),
                     resultSet.getString("publicationDate"),
                     resultSet.getString("description"),
-                    resultSet.getBoolean("offlineAvailable")
+                    resultSet.getBoolean("offline")
             ));
         }
         tracksDTO.setTracks(tracks);

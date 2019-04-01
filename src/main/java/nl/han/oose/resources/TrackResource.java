@@ -2,6 +2,7 @@ package nl.han.oose.resources;
 
 import nl.han.oose.dto.TracksDTO;
 import nl.han.oose.service.TrackService;
+import nl.han.oose.service.TrackServiceImpl;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -13,7 +14,7 @@ import javax.ws.rs.core.Response;
 @Path("/tracks")
 public class TrackResource {
 
-    private TrackService trackService = new TrackService();
+    private TrackService trackService = new TrackServiceImpl();
 
     public TrackResource() {
     }
