@@ -17,18 +17,21 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.StreamingOutput;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 
 @ExtendWith(MockitoExtension.class)
 public class PlaylistResourceTest {
 
     private final int PLAYLIST_ID = 1;
+    private final int TRACK_ID = 2;
     private final String TOKEN = "TOKEN";
 
     @Mock
@@ -42,7 +45,8 @@ public class PlaylistResourceTest {
     public void getAllPlaylistsCorrectToken() {
         PlaylistsDTO playlistsDTO = new PlaylistsDTO();
 
-        Mockito.when(playlistService.getAllPlaylists(TOKEN)).thenReturn(playlistsDTO);
+        Mockito.when(playlistService.getAllPlaylists(TOKEN))
+                .thenReturn(playlistsDTO);
 
         Response actualResult = sut.getAllPlaylists(TOKEN);
 
@@ -64,18 +68,49 @@ public class PlaylistResourceTest {
     }
 
     @Test
-    public void deletePlaylist() {
-        PlaylistsDTO playlistsDTO = new PlaylistsDTO();
+    public void deletePlaylistRoeptServiceAan() {
+        sut.deletePlaylist(PLAYLIST_ID, TOKEN);
+        Mockito.verify(playlistService).deletePlaylist(TOKEN, PLAYLIST_ID);
+    }
 
-        Mockito.when(playlistService.deletePlaylist(TOKEN, PLAYLIST_ID)).thenReturn(playlistsDTO);
+    @Test
+    public void addPlaylistRoeptServiceAan() {
+        PlaylistDTO playlistDTO = new PlaylistDTO();
+        sut.addPlaylist(playlistDTO, TOKEN);
+        Mockito.verify(playlistService).addPlaylist(playlistDTO, TOKEN);
+    }
 
-        Response actualResult = sut.getAllPlaylists(TOKEN);
+    @Test
+    public void editPlaylistRoeptServiceAan() {
+        PlaylistDTO playlistDTO = new PlaylistDTO();
+        sut.editPlaylist(playlistDTO, PLAYLIST_ID, TOKEN);
+        Mockito.verify(playlistService).editPlaylist(playlistDTO, TOKEN, PLAYLIST_ID);
+    }
 
-        //Vergelijk status
-        assertEquals(Response.Status.OK.getStatusCode(), actualResult.getStatus());
+    @Test
+    public void getAllTracksForPlaylistRoeptServiceAan() {
+        TracksDTO tracksDTO = new TracksDTO();
 
-        Mockito.verify(playlistService).getAllPlaylists(TOKEN);
-        assertEquals(playlistsDTO, actualResult.getEntity());
+        Mockito.when(playlistService.getAllTracksForPlaylist(anyString(), anyInt()))
+                .thenReturn(tracksDTO);
+
+        Response actualResult = sut.getAllTracksForPlaylist(PLAYLIST_ID, TOKEN);
+
+        Mockito.verify(playlistService).getAllTracksForPlaylist(TOKEN, PLAYLIST_ID);
+        assertEquals(tracksDTO, actualResult.getEntity());
+    }
+
+    @Test
+    public void deleteTrackFromPlaylistRoeptServiceAan() {
+        sut.deleteTrackFromPlaylist(PLAYLIST_ID, TRACK_ID, TOKEN);
+        Mockito.verify(playlistService).deleteTrackFromPlaylist(TOKEN, PLAYLIST_ID, TRACK_ID);
+    }
+
+    @Test
+    public void addTrackToPlaylistRoeptServiceAan() {
+        TrackDTO trackDTO = new TrackDTO();
+        sut.addTrackToPlaylist(trackDTO, PLAYLIST_ID, TOKEN);
+        Mockito.verify(playlistService).addTrackToPlaylist(TOKEN, PLAYLIST_ID, trackDTO);
     }
 
 }

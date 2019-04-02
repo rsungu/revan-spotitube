@@ -4,6 +4,7 @@ import nl.han.oose.dto.TracksDTO;
 import nl.han.oose.service.TrackService;
 import nl.han.oose.service.TrackServiceImpl;
 
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -17,6 +18,11 @@ public class TrackResource {
     private TrackService trackService = new TrackServiceImpl();
 
     public TrackResource() {
+    }
+
+    @Inject
+    public TrackResource(TrackService trackService) {
+        this.trackService = trackService;
     }
 
     @GET
