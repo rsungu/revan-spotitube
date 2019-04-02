@@ -6,11 +6,25 @@ import nl.han.oose.dto.TrackDTO;
 import nl.han.oose.dto.TracksDTO;
 import nl.han.oose.persistence.*;
 
+import javax.enterprise.inject.Default;
+import javax.inject.Inject;
+
+@Default
 public class PlaylistServiceImpl implements PlaylistService {
 
     private TokenDAO tokenDAO = new TokenDAOImpl();
-    private PlaylistsDAOImpl playlistsDAO = new PlaylistsDAOImpl();
+    private PlaylistsDAO playlistsDAO = new PlaylistsDAOImpl();
     private TrackDAO trackDAO = new TrackDAOImpl();
+
+    public PlaylistServiceImpl() {
+    }
+
+    @Inject
+    public PlaylistServiceImpl(TokenDAO tokenDAO, PlaylistsDAO playlistsDAO, TrackDAO trackDAO) {
+        this.tokenDAO = tokenDAO;
+        this.playlistsDAO = playlistsDAO;
+        this.trackDAO = trackDAO;
+    }
 
     @Override
     public PlaylistsDTO getAllPlaylists(String token) {

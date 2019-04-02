@@ -6,10 +6,27 @@ import nl.han.oose.persistence.TokenDAOImpl;
 import nl.han.oose.persistence.TrackDAO;
 import nl.han.oose.persistence.TrackDAOImpl;
 
+import javax.enterprise.inject.Default;
+import javax.inject.Inject;
+
+
+@Default
 public class TrackServiceImpl implements TrackService {
 
-    private TokenDAO tokenDAO = new TokenDAOImpl();
-    private TrackDAO trackDAO = new TrackDAOImpl();
+    private TokenDAO tokenDAO;
+    private TrackDAO trackDAO;
+
+    public TrackServiceImpl() {
+    }
+
+    @Inject
+    public TrackServiceImpl(TokenDAO tokenDAO, TrackDAO trackDAO) {
+        this.tokenDAO = tokenDAO;
+        this.trackDAO = trackDAO;
+    }
+
+    @Inject
+
 
     @Override
     public TracksDTO getAllTracks(String token, int forPlaylist) {

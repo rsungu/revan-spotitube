@@ -1,10 +1,12 @@
 package nl.han.oose.persistence;
 
+import javax.enterprise.inject.Default;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Default
 public class TokenDAOImpl implements TokenDAO {
 
     @Override

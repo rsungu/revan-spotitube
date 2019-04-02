@@ -10,6 +10,7 @@ import nl.han.oose.persistence.UserDAOImpl;
 import nl.han.oose.util.TokenGenerator;
 
 import javax.enterprise.inject.Default;
+import javax.inject.Inject;
 
 @Default
 public class AuthenticationServiceImpl implements AuthenticationService {
@@ -17,6 +18,13 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private UserDAO userDAO = new UserDAOImpl();
     private TokenDAO tokenDAO = new TokenDAOImpl();
     private TokenGenerator tokenGenerator = new TokenGenerator();
+
+    @Inject
+    public AuthenticationServiceImpl(UserDAO userDAO, TokenDAO tokenDAO, TokenGenerator tokenGenerator) {
+        this.userDAO = userDAO;
+        this.tokenDAO = tokenDAO;
+        this.tokenGenerator = tokenGenerator;
+    }
 
     @Override
     public TokenDTO login(String username, String password) {

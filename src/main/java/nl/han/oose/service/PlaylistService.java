@@ -7,6 +7,7 @@ import nl.han.oose.dto.TracksDTO;
 
 import javax.sound.midi.Track;
 
+
 public interface PlaylistService {
     PlaylistsDTO getAllPlaylists(String token);
 

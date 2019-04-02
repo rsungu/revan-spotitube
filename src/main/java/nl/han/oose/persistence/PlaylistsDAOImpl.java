@@ -3,6 +3,7 @@ package nl.han.oose.persistence;
 import nl.han.oose.dto.PlaylistDTO;
 import nl.han.oose.dto.PlaylistsDTO;
 
+import javax.enterprise.inject.Default;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Default
 public class PlaylistsDAOImpl implements PlaylistsDAO {
 
     @Override
